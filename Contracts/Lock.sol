@@ -11,7 +11,8 @@ contract Lock is Ownable, ILock{
         transferOwnership(ownerAddress);
     }
 
-    address[] properties;
+    address[] public  properties;
+    mapping (address=>string) public propertyMap;
 
     modifier onlyItself(address property) {
         require(property == msg.sender,"Only can the property delete");
@@ -23,8 +24,9 @@ contract Lock is Ownable, ILock{
     }
 
     function addProperty(string memory _name, string memory _location) external   {
-        address newProperty = address(new Property(_name,_location,msg.sender,address(this)));
+        address newProperty = address(new Property(_name,_location,msg.sender));
         properties.push(newProperty);
+        propertyMap[newProperty] = _name;
     }
 
     function deleteProperty(address propertyAddress) external onlyItself(propertyAddress){
