@@ -63,11 +63,23 @@ Verify the deployed contracts on the Moonbeam block explorer:
 npx hardhat verify --network moonbase DEPLOYED_CONTRACT_ADDRESS "Constructor Argument 1" "Constructor Argument 2"
 ```
 
-## Interacting with the Contracts
+### Listening to Contract Events with Go
 
-### Script Interaction
+For real-time interaction and monitoring of our smart contract events, such as detecting when a door is opened, we provide a Go script that listens to emitted events. This is particularly useful for automating responses to contract activities.
 
-- Use Hardhat scripts to interact with your contracts by invoking contract methods through ethers.js in your scripts.
+#### Setup
+
+Ensure you have Go installed on your system and the `go-ethereum` package is accessible. You can install `go-ethereum` using go get:
+
+```bash
+go get github.com/ethereum/go-ethereum
+```
+
+#### Running the Listener
+
+```bash
+go run event_listener.go
+```
 
 ## Project Structure
 
