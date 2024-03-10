@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.4;
+pragma solidity 0.8.19;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "BlockLock/interface/ILock.sol";
+import "./interface/ILock.sol";
 
 
 contract Property is Ownable {
@@ -25,7 +25,7 @@ contract Property is Ownable {
         _;
     }
 
-    constructor(string memory _name, string memory _location,address ownerAddress) Ownable(){
+    constructor(string memory _name, string memory _location,address ownerAddress) Ownable(ownerAddress){
         _transferOwnership(ownerAddress);
         location = _location;
         name = _name;
