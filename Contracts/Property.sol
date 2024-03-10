@@ -3,6 +3,7 @@ pragma solidity >=0.8.4;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "BlockLock/interface/ILock.sol";
+import "BlockLock/interface/ILockManager.sol";
 
 
 contract Property is Ownable {
@@ -12,6 +13,7 @@ contract Property is Ownable {
 
     address tempOwner;
     address lockContractAddress;
+    address lockManagerContractAddress;
 
     event OpenDoor();
 
@@ -26,21 +28,21 @@ contract Property is Ownable {
     }
 
     constructor(string memory _name, string memory _location,address ownerAddress) Ownable(){
-        _transferOwnership(ownerAddress);
+        transferOwnership(ownerAddress);
         location = _location;
         name = _name;
         lockContractAddress = msg.sender;
     }
 
-    function rentOwner(address renter) public onlyOwner{
+    function rentOwner(address renter) external onlyOwner{
         tempOwner = renter;
     }
 
-    function finishRent() public onlyOwner {
+    function finishRent() external onlyOwner {
         tempOwner = address(0);
     }
 
-    function openDoor() public canOpenDoor {
+    function openDoor() external canOpenDoor {
         emit OpenDoor();
     }
     
@@ -48,7 +50,6 @@ contract Property is Ownable {
         require(newOwner != address(0), "Ownable: new owner is the zero address");
         ILock(lockContractAddress).deleteProperty(address(this));
         _transferOwnership(newOwner);
-        //TODO add this property to new user's lock contract
     }
 
 }
