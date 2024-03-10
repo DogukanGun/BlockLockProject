@@ -12,6 +12,10 @@ The Smart Lock System leverages the Polkadot blockchain to revolutionize propert
 - **Property CLI**:Listens the smart contract which represents the property, and, when the requierd event is emitted, opens the door.
 - **App**:An user manages the lock contracts to add property or rent it moreover, the user can reach the property contract by lock contract and opens the door.
 
+### Listening to Contract Events with Go
+
+For real-time interaction and monitoring of our smart contract events, such as detecting when a door is opened, we provide a Go script that listens to emitted events. This is particularly useful for automating responses to contract activities.
+
 #### Architecture
 
 - Each property objects represent smart contract. Emit event arrows represent the cli of the property and, openning door is done by cli.
@@ -35,9 +39,10 @@ git clone
 cd blocklock
 ```
 
-2. Install dependencies:
+2. Install dependencies for app:
 
 ```bash
+cd block-lock-web-app
 npm install
 ```
 
@@ -45,6 +50,24 @@ npm install
 
 ```plaintext
 PRIVATE_KEY="your_private_key_here"
+```
+
+#### Setup For ClI
+
+Ensure you have Go installed on your system and the `go-ethereum` package is accessible. You can install `go-ethereum` using go get:
+
+```bash
+cd Hardware
+```
+
+```bash
+go get github.com/ethereum/go-ethereum
+```
+
+#### Running the CLI
+
+```bash
+go run event_listener.go
 ```
 
 ### Compiling Contracts
