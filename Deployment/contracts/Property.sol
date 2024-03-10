@@ -28,7 +28,7 @@ contract Property is Ownable {
     }
 
     constructor(string memory _name, string memory _location,address ownerAddress) Ownable(){
-        transferOwnership(ownerAddress);
+        _transferOwnership(ownerAddress);
         location = _location;
         name = _name;
         lockContractAddress = msg.sender;

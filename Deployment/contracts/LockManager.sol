@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.4;
+pragma solidity 0.8.19;
 
-import "BlockLock/interface/ILockManager.sol";
-import "BlockLock/Lock.sol";
+import "./interface/ILockManager.sol";
+import "./Lock.sol";
 
 
 contract LockManager is ILockManager {
