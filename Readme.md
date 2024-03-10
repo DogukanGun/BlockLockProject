@@ -9,6 +9,14 @@ The Smart Lock System leverages the Polkadot blockchain to revolutionize propert
 - **LockManager Contract**: Manages the creation and association of individual Lock contracts for each user, ensuring personalized access control.
 - **Lock Contract**: Provides functionalities for property access management, including adding and managing properties, granting temporary access, and transferring property ownership.
 - **Property Contract**: Represents individual properties, allowing operations like renting out the property and opening the property door for access.
+- **Property CLI**:Listens the smart contract which represents the property, and, when the requierd event is emitted, opens the door.
+- **App**:An user manages the lock contracts to add property or rent it moreover, the user can reach the property contract by lock contract and opens the door.
+
+#### Architecture
+
+- Each property objects represent smart contract. Emit event arrows represent the cli of the property and, openning door is done by cli.
+
+<img width="835" alt="Screenshot 2024-03-11 at 02 08 48" src="https://github.com/DogukanGun/BlockLockProject/assets/59707019/206cab9b-4e1d-47bf-9c51-86527850c6ad">
 
 ## Getting Started
 
@@ -63,23 +71,11 @@ Verify the deployed contracts on the Moonbeam block explorer:
 npx hardhat verify --network moonbase DEPLOYED_CONTRACT_ADDRESS "Constructor Argument 1" "Constructor Argument 2"
 ```
 
-### Listening to Contract Events with Go
+## Interacting with the Contracts
 
-For real-time interaction and monitoring of our smart contract events, such as detecting when a door is opened, we provide a Go script that listens to emitted events. This is particularly useful for automating responses to contract activities.
+### Script Interaction
 
-#### Setup
-
-Ensure you have Go installed on your system and the `go-ethereum` package is accessible. You can install `go-ethereum` using go get:
-
-```bash
-go get github.com/ethereum/go-ethereum
-```
-
-#### Running the Listener
-
-```bash
-go run event_listener.go
-```
+- Use Hardhat scripts to interact with your contracts by invoking contract methods through ethers.js in your scripts.
 
 ## Project Structure
 
